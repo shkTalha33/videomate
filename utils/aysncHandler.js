@@ -1,16 +1,10 @@
-const aysncHandler = (requestHandler)  => {
-    (req, res, next) => {
-        Promise.resolve(requestHandler(req, res, next))
-        .catch((err) => next(err))
-    }
-}
+const aysncHandler = (requestHandler) => {
+  (req, res, next) => {
+    Promise.resolve(requestHandler(req, res, next)).catch((err) => next(err));
+  };
+};
 
-module.exports = {aysncHandler}
-
-
-
-
-
+module.exports = { aysncHandler };
 
 // Try Catch and also using Higher Order Fuction (Usally takes fucntion as a parameter and return function)
 // const aysncHandler = (fn) = async(req, res, next) => {
