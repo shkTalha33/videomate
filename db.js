@@ -1,8 +1,6 @@
 const mongoose = require('mongoose')
-const express = require('express')
 const {DB_NAME} = require('./constants')
 
-const app = express()
 
 const connectToMongo = async() => {
     try {
