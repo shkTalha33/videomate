@@ -18,4 +18,4 @@ const subscriptionSchema = new mongoose.Schema(
 
 const subscription = mongoose.model("Subscription", subscriptionSchema);
 
-module.exports = { subscription };
+module.exports = subscription ;
