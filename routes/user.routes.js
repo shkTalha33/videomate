@@ -9,6 +9,8 @@ const {
   updateUserAvatar,
   updateUserCoverImage,
   getCurrentUser,
+  getUserChannelProfile,
+  getWatchHistory,
 } = require("../controllers/user.controller.js");
 const { verifyJWT } = require("../Middleware/auth.middleware.js");
 const upload = require("../Middleware/multer.middleware.js");
@@ -34,20 +36,24 @@ router.route("/login").post(loginUser);
 //secure route
 router.route("/logout").post(verifyJWT, logoutUser);
 
-router.route("/change-password").post(verifyJWT, changeCurrentPassword);
+router.route("/change-password").patch(verifyJWT, changeCurrentPassword);
 
-router.route("/update-details").post(verifyJWT, updateUserDetails);
+router.route("/update-details").patch(verifyJWT, updateUserDetails);
 
 router
   .route("/update-avatar")
-  .post(verifyJWT, upload.single("avatar"), updateUserAvatar);
+  .patch(verifyJWT, upload.single("avatar"), updateUserAvatar);
 
 router
   .route("/update-cover-image")
-  .post(verifyJWT, upload.single("coverImage"), updateUserCoverImage);
+  .patch(verifyJWT, upload.single("coverImage"), updateUserCoverImage);
 
-router.route("/get-current-user").post(verifyJWT, getCurrentUser);
+  router.route("/refresh-token").post(refreshAccessToken);
 
-router.route("/refresh-token").post(refreshAccessToken);
+router.route("/current-user").get(verifyJWT, getCurrentUser);
+
+router.route("/channel-profile/:username").get(verifyJWT, getUserChannelProfile);
+
+router.route("/watch-history").get(verifyJWT, getWatchHistory);
 
 module.exports = router;
