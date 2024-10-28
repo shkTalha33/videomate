@@ -17,8 +17,10 @@ app.use(express.static("public"));
 
 //routes import
 const userRouter = require("./routes/user.routes.js");
+const videoRouter = require("./routes/video.routes.js")
 
 //routes
 app.use("/api/v1/users", userRouter);
+app.use("/api/v1/video", videoRouter)
 
 module.exports = { app };
