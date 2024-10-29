@@ -1,4 +1,7 @@
-const { publishAVideo } = require("../controllers/video.controller.js");
+const {
+  publishAVideo,
+  getAllVideos,
+} = require("../controllers/video.controller.js");
 const { verifyJWT } = require("../Middleware/auth.middleware.js");
 const upload = require("../Middleware/multer.middleware.js");
 const { Router } = require("express");
@@ -19,5 +22,7 @@ router.route("/publish-video").post(
   ]),
   publishAVideo
 );
+
+router.route("/get-all-videos").get(getAllVideos);
 
 module.exports = router;
